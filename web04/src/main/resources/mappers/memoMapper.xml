@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- memoMapper.xml -->
+<!-- 다른 mapper와 중복되지 않는 네임스페이스 기재 -->
+<!-- resultType의 alias를 설정해야 함. mybatis-config.xml -->
+<mapper namespace="memo">
+
+	<select id="memoList" resultType="memoDto">
+		select * from memo order by idx desc
+	</select>
+	
+	<insert id="memoInsert">
+		insert into memo (idx, writer, memo) values
+		( (select nvl(max(idx+1),1) from memo), #{writer}, #{memo} )
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

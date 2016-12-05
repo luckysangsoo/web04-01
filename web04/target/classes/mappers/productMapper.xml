@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않는 네임스페이스 기재 -->
+<mapper namespace="product">
+	<select id="productList" resultType="productDto">
+		select * from product01 order by product_name
+	</select>
+	<select id="product_detail" resultType="productDto">
+		select * from product01 where product_id=#{product_id}
+	</select>
+	<insert id="productInsert">
+		insert into product01 values
+		((select nvl(max(product_id)+1,1) from product01),
+		#{product_name},#{price},#{description},#{picture_url} )
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
